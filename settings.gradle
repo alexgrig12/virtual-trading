@@ -16,3 +16,5 @@ rootProject.name = "Virtual Trading"
 include ':app'
 include ':feature:auth'
 include ':navigation'
+include ':feature:coins'
+include ':feature:dashboard'
