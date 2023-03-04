@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Virtual Trading"
 include ':app'
+include ':feature:auth'
+include ':navigation'

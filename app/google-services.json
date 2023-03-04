@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "336818869648",
+    "project_id": "virtualtrading-70739",
+    "storage_bucket": "virtualtrading-70739.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336818869648:android:19937cc83c944be31e8f15",
+        "android_client_info": {
+          "package_name": "com.virtualtrading"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336818869648-bd25blk8m20ga2r02rqep42djuo7hhmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.virtualtrading",
+            "certificate_hash": "ba9366564988fee852a28c35aa550e27f421b039"
+          }
+        },
+        {
+          "client_id": "336818869648-d2gl6iq5ctaomaos8s66i8onsq7bmfpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4hLZs7y4ijR6nczWNF22kHEgAlaWNcZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336818869648-d2gl6iq5ctaomaos8s66i8onsq7bmfpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
