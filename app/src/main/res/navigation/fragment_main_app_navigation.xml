@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_main_app_navigation.xml"
+    app:startDestination="@id/navigation_coins_fragment">
+
+    <fragment
+        android:id="@+id/navigation_coins_fragment"
+        android:name="virtualtrading.coins.api.CoinsFragment"
+        android:label="CoinsFragment"
+        tools:layout="@layout/fragment_coins">
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_dashboard_fragment"
+        android:name="virtualtrading.dashboard.api.DashboardFragment"
+        android:label="DashboardFragment"
+        tools:layout="@layout/fragment_dashboard">
+    </fragment>
+</navigation>
