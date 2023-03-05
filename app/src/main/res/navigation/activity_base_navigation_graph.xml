@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/mainContentFragment"
-        android:name="com.virtualtrading.MainContentFragment"
+        android:name="com.virtualtrading.MainFragment"
         android:label="MainContentFragment"
-        tools:layout="@layout/fragment_main_content">
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainContentFragment_to_googleAuthFragment"
             app:destination="@id/googleAuthFragment" />

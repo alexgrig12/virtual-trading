@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_coins_fragment"
+        android:icon="@drawable/navigation_coins_icon"
+        android:title="coins" />
 
+    <item
+        android:id="@+id/navigation_actions"
+        android:icon="@drawable/main_actions"
+        android:title="main_actions"
+        />
+
+    <item
+        android:id="@+id/navigation_dashboard_fragment"
+        android:icon="@drawable/navigation_dashboard_icon"
+        android:title="dashboard" />
 </menu>
