@@ -8,10 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDeepLinkBuilder
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -45,7 +42,7 @@ class GoogleAuthFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentGoogleAuthBinding.inflate(inflater, container, false)
 
@@ -145,6 +142,11 @@ class GoogleAuthFragment : Fragment() {
                         enter = android.R.animator.fade_in
                         exit = android.R.animator.fade_out
                     }
+
+                    popUpTo(virtualtrading.navigation.R.id.googleAuthFragment) {
+                        inclusive = true
+                    }
+
                 })
         }
     }
