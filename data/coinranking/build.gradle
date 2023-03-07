@@ -1,11 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'virtualtrading.coins'
+    namespace 'virtualtrading.coinranking'
     compileSdk 33
 
     defaultConfig {
@@ -29,25 +28,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
 
-    //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-
-
-    implementation "com.google.dagger:dagger:2.42"
-    kapt "com.google.dagger:dagger-compiler:2.42"
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation project(':navigation')
-    implementation project(":data:coinranking")
 }
