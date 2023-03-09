@@ -2,10 +2,14 @@ package virtualtrading.coins.api
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.Lazy
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.FragmentCoinsBinding
 import virtualtrading.coins.internal.CoinsComponentViewModel
@@ -29,7 +33,9 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCoinsBinding.bind(view)
-        coinsViewModel.logRanking()
+        coinsViewModel.coins.onEach {
+            Log.d("TAG", "${it.toString()} ")
+        }.launchIn(lifecycleScope)
     }
 
     override fun onDestroyView() {

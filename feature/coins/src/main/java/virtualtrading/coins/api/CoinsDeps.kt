@@ -1,11 +1,11 @@
 package virtualtrading.coins.api
 
-import virtualtrading.coinranking.CoinrankingService
+import virtualtrading.coinranking.CoinrankingRepository
 
 interface CoinsDeps {
-    val coinRankingService: CoinrankingService
+    val coinrankingRepository: CoinrankingRepository
 }
 
 interface CoinsDepsProvider {
-    val deps:CoinsDeps
+    val deps: CoinsDeps
 }
