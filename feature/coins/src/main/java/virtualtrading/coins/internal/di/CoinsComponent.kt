@@ -7,6 +7,7 @@ import dagger.Module
 import virtualtrading.coins.api.CoinsDeps
 import virtualtrading.coins.api.CoinsDepsProvider
 import virtualtrading.coins.api.CoinsFragment
+import virtualtrading.coins.internal.CoinsListFragment
 import javax.inject.Scope
 
 @Scope
@@ -18,6 +19,7 @@ annotation class CoinsScope
 )]
 internal interface CoinsComponent {
     fun inject(fragment: CoinsFragment)
+    fun inject(fragment: CoinsListFragment)
 
     @Component.Builder
     interface Builder {

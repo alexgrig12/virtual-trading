@@ -16,8 +16,10 @@
         app:tabRippleColor="@null" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/coin_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:listitem="@layout/coin_list_item"
         />
 
 </LinearLayout>

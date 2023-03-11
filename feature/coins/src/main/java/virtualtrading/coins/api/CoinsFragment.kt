@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,7 +23,7 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
 
     @Inject
     internal lateinit var coinViewModelFactory: Lazy<CoinsViewModel.Factory>
-    private val coinsViewModel: CoinsViewModel by viewModels { coinViewModelFactory.get() }
+    private val coinsViewModel: CoinsViewModel by activityViewModels { coinViewModelFactory.get() }
     private val componentViewModel: CoinsComponentViewModel by viewModels()
 
     override fun onAttach(context: Context) {
@@ -60,6 +61,7 @@ class ListTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
         return 2
     }
+
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {

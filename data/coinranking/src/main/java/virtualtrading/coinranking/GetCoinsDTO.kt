@@ -78,7 +78,9 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
     change = this.change,
     iconUrl = this.iconUrl,
     name = this.name,
-    price = this.price,
+    price = this.price.indexOf(".").let { index ->
+        this.price.substring(0, index + 3)
+    },
     symbol = this.symbol
 )
 
