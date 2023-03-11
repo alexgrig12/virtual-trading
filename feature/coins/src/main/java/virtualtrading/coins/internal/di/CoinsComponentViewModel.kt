@@ -1,4 +1,4 @@
-package virtualtrading.coins.internal
+package virtualtrading.coins.internal.di
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

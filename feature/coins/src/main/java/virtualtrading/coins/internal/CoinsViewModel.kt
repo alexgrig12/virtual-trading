@@ -1,25 +1,30 @@
 package virtualtrading.coins.internal
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
 import virtualtrading.coinranking.CoinrankingRepository
+import virtualtrading.coinranking_domain.Coin
 import javax.inject.Inject
 
 
 internal class CoinsViewModel(private val coinrankingRepository: CoinrankingRepository) : ViewModel() {
 
-    val coins = flow {
-        try {
-            emit(coinrankingRepository.getCoins())
-        } catch (e: java.lang.Exception) {
-            Log.d(TAG, "Error", e)
+    private val _coins = MutableLiveData<List<Coin>>()
+    val coins: LiveData<List<Coin>>
+        get() = _coins
+
+    init {
+        getCoins()
+    }
+
+    private fun getCoins() {
+        viewModelScope.launch {
+            coinrankingRepository.getCoins().let { coinList ->
+                _coins.value = coinList
+            }
         }
-    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+    }
+
 
     @Suppress("UNCHECKED_CAST")
     class Factory @Inject constructor(private val coinrankingRepository: CoinrankingRepository) : ViewModelProvider.Factory {

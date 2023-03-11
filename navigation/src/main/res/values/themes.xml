@@ -27,8 +27,4 @@
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
     </style>
-
-<!--    <style name="Base.Widget.AppCompat.TextView" parent="TextAppearance.AppCompat">-->
-<!--        <item name="android:textColor">@color/black</item>-->
-<!--    </style>-->
 </resources>
