@@ -10,6 +10,12 @@
         android:name="virtualtrading.coins.api.CoinsFragment"
         android:label="CoinsFragment"
         tools:layout="@layout/fragment_coins">
+        <action
+            android:id="@+id/action_navigation_coins_fragment_to_navigation_dashboard_fragment"
+            app:destination="@id/navigation_dashboard_fragment"
+            app:popUpTo="@id/fragment_main_app_navigation.xml"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/navigation_dashboard_fragment"

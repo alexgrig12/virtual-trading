@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.Lazy
@@ -35,6 +36,10 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCoinsBinding.bind(view)
         setupTabsWithViewPager()
+
+        binding.balanceBtn.setOnClickListener {
+            findNavController().navigate(virtualtrading.navigation.R.id.action_navigation_coins_fragment_to_navigation_dashboard_fragment)
+        }
     }
 
     private fun setupTabsWithViewPager() {
