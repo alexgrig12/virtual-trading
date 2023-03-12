@@ -8,7 +8,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -34,7 +37,7 @@
         android:layout_width="360dp"
         android:layout_height="112dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/balance_bar_bg">
 
         <LinearLayout

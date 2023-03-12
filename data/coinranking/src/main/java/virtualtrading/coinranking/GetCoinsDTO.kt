@@ -4,6 +4,7 @@ package virtualtrading.coinranking
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import virtualtrading.coinranking_domain.Coin
+import virtualtrading.coinranking_domain.CoinsImageFormat
 
 @Serializable
 data class GetCoinsDTO(
@@ -79,6 +80,14 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
     iconUrl = this.iconUrl,
     name = this.name,
     price = this.price,
-    symbol = this.symbol
+    symbol = this.symbol,
+    urlFormat = this.iconUrl.let { str ->
+        str.lastIndexOf('.', str.length, false).let { index ->
+            str.substring(index + 1, index + 4).let { format ->
+                if (format == CoinsImageFormat.SVG.format) CoinsImageFormat.SVG else CoinsImageFormat.PNG
+            }
+        }
+    },
+    isDecreased = this.change.startsWith("-")
 )
 

@@ -5,3 +5,4 @@ enum class CoinsOrderBy(val stringValue: String) {
     PRICE("price"),
     CHANGE("change"),
 }
+

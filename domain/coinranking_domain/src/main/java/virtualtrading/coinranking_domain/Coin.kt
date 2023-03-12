@@ -6,4 +6,11 @@ data class Coin(
     val name: String,
     val price: String,
     val symbol: String,
+    val urlFormat: CoinsImageFormat,
+    val isDecreased: Boolean,
 )
+
+enum class CoinsImageFormat(val format: String) {
+    SVG("svg"),
+    PNG("png")
+}

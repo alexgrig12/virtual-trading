@@ -5,7 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import coil.decode.SvgDecoder
+import coil.load
 import virtualtrading.coinranking_domain.Coin
+import virtualtrading.coinranking_domain.CoinsImageFormat
+import virtualtrading.coins.R
 import virtualtrading.coins.databinding.CoinListItemBinding
 
 internal class CoinAdapter() : ListAdapter<Coin, CoinViewHolder>(CoinItemCallback) {
@@ -26,9 +30,25 @@ internal class CoinViewHolder(private val binding: CoinListItemBinding) : ViewHo
     fun bind(item: Coin) {
         binding.coinName.text = item.name
         binding.coinSymbol.text = item.symbol
-        binding.coinCurrentPrice.text = item.price
-        binding.coinPriceChange.text = item.change
-//        binding.coinIcon
+        binding.coinCurrentPrice.text = binding.root.context.getString(R.string.coin_price, item.price)
+        binding.coinPriceChange.text = binding.root.context.getString(R.string.coin_percent_change, item.change)
+        binding.coinIcon.load(item.iconUrl) {
+            when (item.urlFormat) {
+                CoinsImageFormat.SVG -> {
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                }
+                else -> {}
+            }
+        }
+        binding.coinPriceChange.setTextColor(
+            if (item.isDecreased) {
+                binding.root.context.getColor(virtualtrading.navigation.R.color.red)
+            } else {
+                binding.root.context.getColor(
+                    virtualtrading.navigation.R.color.green
+                )
+            }
+        )
     }
 }
 
