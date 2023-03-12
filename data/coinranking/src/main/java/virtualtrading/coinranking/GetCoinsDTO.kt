@@ -26,7 +26,7 @@ data class GetCoinsDTO(
             @SerialName("change")
             val change: String,
             @SerialName("coinrankingUrl")
-            val coinrankingUrl: String,
+            val coinrankingUrl: String?,
             @SerialName("color")
             val color: String?,
             @SerialName("24hVolume")
@@ -42,9 +42,9 @@ data class GetCoinsDTO(
             @SerialName("price")
             val price: String,
             @SerialName("rank")
-            val rank: Int,
+            val rank: Int?,
             @SerialName("sparkline")
-            val sparkline: List<String>?,
+            val sparkline: List<String?>?,
             @SerialName("symbol")
             val symbol: String,
             @SerialName("uuid")
@@ -78,9 +78,7 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
     change = this.change,
     iconUrl = this.iconUrl,
     name = this.name,
-    price = this.price.indexOf(".").let { index ->
-        this.price.substring(0, index + 3)
-    },
+    price = this.price,
     symbol = this.symbol
 )
 

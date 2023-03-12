@@ -3,6 +3,7 @@ package virtualtrading.coins.internal
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import virtualtrading.coinranking.CoinrankingRepository
+import virtualtrading.coinranking.CoinsOrderBy
 import virtualtrading.coinranking_domain.Coin
 import javax.inject.Inject
 
@@ -14,12 +15,12 @@ internal class CoinsViewModel(private val coinrankingRepository: CoinrankingRepo
         get() = _coins
 
     init {
-        getCoins()
+        getCoins(CoinsOrderBy.MARKETCAP)
     }
 
-    private fun getCoins() {
+    fun getCoins(orderBy: CoinsOrderBy) {
         viewModelScope.launch {
-            coinrankingRepository.getCoins().let { coinList ->
+            coinrankingRepository.getCoins(orderBy.stringValue).let { coinList ->
                 _coins.value = coinList
             }
         }

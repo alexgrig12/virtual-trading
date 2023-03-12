@@ -3,13 +3,13 @@ package virtualtrading.coins.internal
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import dagger.Lazy
+import virtualtrading.coinranking.CoinsOrderBy
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.FragmentCoinsListBinding
 import virtualtrading.coins.internal.di.CoinsComponentViewModel
@@ -41,6 +41,7 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
         }
 
         coinsViewModel.coins.observe(viewLifecycleOwner) { newCoinList ->
+            binding.coinList.smoothScrollToPosition(0)
             adapter?.submitList(newCoinList)
         }
 
@@ -55,9 +56,9 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
         filterTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (filterTabs.selectedTabPosition) {
-                    0 -> Toast.makeText(requireContext(), "All tab selected", Toast.LENGTH_SHORT).show()
-                    1 -> Toast.makeText(requireContext(), "Price tab selected", Toast.LENGTH_SHORT).show()
-                    2 -> Toast.makeText(requireContext(), "24h change tab selected", Toast.LENGTH_SHORT).show()
+                    0 -> coinsViewModel.getCoins(CoinsOrderBy.MARKETCAP)
+                    1 -> coinsViewModel.getCoins(CoinsOrderBy.PRICE)
+                    2 -> coinsViewModel.getCoins(CoinsOrderBy.CHANGE)
                 }
             }
 
