@@ -5,7 +5,11 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ChooseFavoriteItemDecoration(private val innerOffset: Int, private val outerTopOffset: Int) : RecyclerView.ItemDecoration() {
+class ChooseFavoriteItemDecoration(
+    private val innerOffset: Int = 0,
+    private val outerTopOffset: Int = 0,
+    private val outerHorizontalOffset: Int = 0,
+) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
 
@@ -15,10 +19,10 @@ class ChooseFavoriteItemDecoration(private val innerOffset: Int, private val out
         val spanCount = getTotalSpanCount(parent)
 
         with(outRect) {
+            left = if (isFirstInRow(currentPosition, spanCount)) outerHorizontalOffset else innerOffset
+            right = if (isLastInRow(currentPosition, spanCount)) outerHorizontalOffset else innerOffset
             top = if (isInTheFirstRow(currentPosition, spanCount)) outerTopOffset else innerOffset
-            left = innerOffset
             bottom = innerOffset
-            right = innerOffset
         }
     }
 
@@ -31,4 +35,11 @@ class ChooseFavoriteItemDecoration(private val innerOffset: Int, private val out
         return position < spanCount
     }
 
+    private fun isFirstInRow(position: Int, spanCount: Int): Boolean {
+        return position % spanCount == 0
+    }
+
+    private fun isLastInRow(position: Int, spanCount: Int): Boolean {
+        return isFirstInRow(position + 1, spanCount)
+    }
 }

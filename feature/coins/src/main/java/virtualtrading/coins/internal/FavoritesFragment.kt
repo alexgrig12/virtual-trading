@@ -43,9 +43,8 @@ internal class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
         with(binding.fragmentNoFavorites.chooseRecommendedCoins) {
             this.adapter = this@FavoritesFragment.adapter
-            itemAnimator = null
-            addItemDecoration(ChooseFavoriteItemDecoration(4, outerTopOffset = 32))
-            setHasFixedSize(true)
+//            itemAnimator = null
+            addItemDecoration(ChooseFavoriteItemDecoration(4, outerTopOffset = 16, outerHorizontalOffset = 16))
             overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
         coinsViewModel.recommendedToBeFavorite.observe(viewLifecycleOwner) { recommendedCoins ->
