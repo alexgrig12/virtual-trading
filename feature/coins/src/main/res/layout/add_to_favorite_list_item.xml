@@ -5,10 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="128dp"
     android:layout_gravity="center_horizontal"
-    android:layout_marginStart="4dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginBottom="4dp"
     android:backgroundTint="#08458E"
     app:cardCornerRadius="8dp"
     app:rippleColor="@android:color/transparent">
