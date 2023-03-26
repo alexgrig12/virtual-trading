@@ -19,6 +19,9 @@ interface CoinrankingService {
         @Query("uuids") ids: List<String>? = null,
     ): GetCoinsDTO
 
+    @GET("/coin")
+    suspend fun getCoinById(@Query("uuid") id: String): GetCoinDto
+
 }
 
 @ExperimentalSerializationApi
