@@ -3,8 +3,6 @@ package virtualtrading.coinranking
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import virtualtrading.coinranking_domain.Coin
-import virtualtrading.coinranking_domain.CoinsImageFormat
 
 @Serializable
 data class GetCoinsDTO(
@@ -49,7 +47,7 @@ data class GetCoinsDTO(
             @SerialName("symbol")
             val symbol: String,
             @SerialName("uuid")
-            val uuid: String?,
+            val uuid: String,
         )
 
         @Serializable
@@ -76,10 +74,11 @@ fun GetCoinsDTO.toCoins(): List<Coin> {
 }
 
 fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
+    uuid = this.uuid,
     change = this.change,
     iconUrl = this.iconUrl,
     name = this.name,
-    price = this.price,
+    price = this.price.substring(0, 8),
     symbol = this.symbol,
     urlFormat = this.iconUrl.let { str ->
         str.lastIndexOf('.', str.length, false).let { index ->
@@ -89,5 +88,20 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
         }
     },
     isDecreased = this.change.startsWith("-")
+)
+
+
+fun GetCoinsDTO.toRecommended(): List<RecommendedCoin> {
+    return this.data.coins.map { it.toRecommendedCoin() }
+}
+
+fun GetCoinsDTO.DataDTO.CoinDTO.toRecommendedCoin(): RecommendedCoin = RecommendedCoin(
+    uuid = this.uuid,
+    change = this.change,
+    name = this.name,
+    price = this.price.substring(0, 8),
+    symbol = this.symbol,
+    isDecreased = this.change.startsWith("-"),
+    isChoosed = false
 )
 

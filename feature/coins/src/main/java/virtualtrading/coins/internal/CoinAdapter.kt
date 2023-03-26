@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.decode.SvgDecoder
 import coil.load
-import virtualtrading.coinranking_domain.Coin
-import virtualtrading.coinranking_domain.CoinsImageFormat
+import virtualtrading.coinranking.Coin
+import virtualtrading.coinranking.CoinsImageFormat
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.CoinListItemBinding
 

@@ -1,6 +1,7 @@
 package virtualtrading.coinranking
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -12,10 +13,15 @@ import retrofit2.http.Query
 interface CoinrankingService {
 
     @GET("/coins")
-    suspend fun getCoins(@Query("orderBy") orderBy:String): GetCoinsDTO
+    suspend fun getCoins(
+        @Query("orderBy") orderBy: String? = null,
+        @Query("limit") amount: Int = 50,
+        @Query("uuids") ids: List<String>? = null,
+    ): GetCoinsDTO
 
 }
 
+@ExperimentalSerializationApi
 fun CoinrankingService(): CoinrankingService {
 
     val json = Json {

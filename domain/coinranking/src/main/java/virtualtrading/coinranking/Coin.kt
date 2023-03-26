@@ -1,6 +1,7 @@
-package virtualtrading.coinranking_domain
+package virtualtrading.coinranking
 
 data class Coin(
+    val uuid: String,
     val change: String,
     val iconUrl: String,
     val name: String,

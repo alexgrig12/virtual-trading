@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="googleAuthFragment" type="id" />
+    <item name="action_googleAuthFragment_to_mainContentFragment" type="id" />
+    <item name="action_navigation_coins_fragment_to_navigation_dashboard_fragment" type="id" />
+</resources>

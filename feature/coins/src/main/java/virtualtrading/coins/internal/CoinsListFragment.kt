@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import dagger.Lazy
+import virtualtrading.coinranking.Coin
 import virtualtrading.coinranking.CoinsOrderBy
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.FragmentCoinsListBinding
@@ -37,10 +38,9 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
         binding.coinList.apply {
             adapter = this@CoinsListFragment.adapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
         }
 
-        coinsViewModel.coins.observe(viewLifecycleOwner) { newCoinList ->
+        coinsViewModel.coins.observe(viewLifecycleOwner) { newCoinList: List<Coin> ->
             binding.coinList.smoothScrollToPosition(0)
             adapter?.submitList(newCoinList)
         }
