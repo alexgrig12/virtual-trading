@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import virtualtrading.coinranking.CoinrankingRepository
 import virtualtrading.coinranking.CoinsOrderBy
-import virtualtrading.coinranking_domain.Coin
+import virtualtrading.coinactions.Coin
 import javax.inject.Inject
 
 

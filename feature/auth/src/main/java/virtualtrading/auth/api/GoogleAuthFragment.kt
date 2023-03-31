@@ -1,6 +1,7 @@
 package virtualtrading.auth.api
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
@@ -8,7 +9,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -19,10 +23,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import virtualtrading.auth.R
 import virtualtrading.auth.databinding.FragmentGoogleAuthBinding
+import virtualtrading.data.firestore.api.datastore.UserPreferences
+import virtualtrading.firestore.model.User
 
-class GoogleAuthFragment : Fragment() {
+class GoogleAuthFragment : Fragment(R.layout.fragment_google_auth) {
 
     private val REQ_ONE_TAP: Int = 2
     private var _binding: FragmentGoogleAuthBinding? = null
@@ -33,6 +41,13 @@ class GoogleAuthFragment : Fragment() {
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
 
+    private lateinit var userPreferences: UserPreferences
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        userPreferences = UserPreferences.getInstance(context)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,17 +55,9 @@ class GoogleAuthFragment : Fragment() {
         updateUI(currentUser)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentGoogleAuthBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentGoogleAuthBinding.bind(view)
 
         oneTapClient = Identity.getSignInClient(requireActivity())
         signInRequest = BeginSignInRequest.builder()
@@ -134,6 +141,18 @@ class GoogleAuthFragment : Fragment() {
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
         if (firebaseUser != null) {
+            val user = User(
+                firebaseUser.email.toString(),
+                firebaseUser.displayName.toString(),
+                firebaseUser.photoUrl.toString(),
+                0.0
+            )
+            lifecycleScope.launch {
+                userPreferences.saveUser(firebaseUser.uid, user)
+            }
+//            userPreferences.getUser().asLiveData().observe(viewLifecycleOwner) {
+//                Toast.makeText(requireContext(), it!!.name, Toast.LENGTH_SHORT).show()
+//            }
             findNavController().navigate(
                 virtualtrading.navigation.R.id.action_googleAuthFragment_to_mainContentFragment,
                 null,

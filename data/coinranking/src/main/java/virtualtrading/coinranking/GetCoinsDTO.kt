@@ -3,8 +3,8 @@ package virtualtrading.coinranking
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import virtualtrading.coinranking_domain.Coin
-import virtualtrading.coinranking_domain.CoinsImageFormat
+import virtualtrading.coinactions.Coin
+import virtualtrading.coinactions.CoinsImageFormat
 
 @Serializable
 data class GetCoinsDTO(

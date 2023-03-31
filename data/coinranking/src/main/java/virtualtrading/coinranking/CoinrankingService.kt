@@ -12,7 +12,7 @@ import retrofit2.http.Query
 interface CoinrankingService {
 
     @GET("/coins")
-    suspend fun getCoins(@Query("orderBy") orderBy:String): GetCoinsDTO
+    suspend fun getCoins(@Query("orderBy") orderBy: String): GetCoinsDTO
 
 }
 

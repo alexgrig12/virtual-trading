@@ -51,12 +51,20 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
 
+    def nav_version = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    //implementation "androidx.navigation:navigation-deep-link:$nav_version"
+
     implementation "com.google.dagger:dagger:2.42"
     kapt "com.google.dagger:dagger-compiler:2.42"
 
     implementation project(':feature:auth')
     implementation project(':feature:coins')
     implementation project(':feature:dashboard')
-    implementation project(':navigation')
+    implementation project(':feature:coinactions')
+    implementation project(':base')
     implementation project(':data:coinranking')
+    implementation project(':data:firestore')
+    implementation project(':domain:firestore')
 }

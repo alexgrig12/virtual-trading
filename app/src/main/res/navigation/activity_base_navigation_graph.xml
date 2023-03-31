@@ -23,4 +23,31 @@
             android:id="@+id/action_mainContentFragment_to_googleAuthFragment"
             app:destination="@id/googleAuthFragment" />
     </fragment>
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/buyCoinFragment">
+        <fragment
+            android:id="@+id/convertCoinFragment"
+            android:name="virtualtrading.coinactions.ConvertCoinFragment"
+            android:label="ConvertCoinFragment"
+            tools:layout="@layout/fragment_convert_coin">
+            <deepLink
+                app:uri="feature:coinactions://virtualtrading.coinactions/convertCoinFragment"/>
+        </fragment>
+        <fragment
+            android:id="@+id/sellCoinFragment"
+            android:name="virtualtrading.coinactions.SellCoinFragment"
+            android:label="SellCoinFragment"
+            tools:layout="@layout/fragment_sell_coin">
+            <deepLink
+                app:uri="feature:coinactions://virtualtrading.coinactions/sellCoinFragment"/>
+        </fragment>
+        <fragment
+            android:id="@+id/buyCoinFragment"
+            android:name="virtualtrading.coinactions.BuyCoinFragment"
+            android:label="BuyCoinFragment"
+            tools:layout="@layout/fragment_buy_coin">
+            <deepLink
+                app:uri="feature:coinactions://virtualtrading.coinactions/buyCoinFragment"/>
+        </fragment>
+    </navigation>
 </navigation>

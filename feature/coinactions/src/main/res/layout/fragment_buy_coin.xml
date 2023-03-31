@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin_outer">
+
+    <TextView
+        android:id="@+id/fragment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buy Crypto"
+        android:textSize="@dimen/text_size_large"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_name"
+        android:layout_above="@id/keyboard_container"
+        android:layout_marginBottom="@dimen/margin_outer">
+
+        <EditText
+            android:id="@+id/edit_money"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:hint="@string/hint_edit_money"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/minimal_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min 10 USD"
+            app:layout_constraintTop_toBottomOf="@id/edit_money"
+            app:layout_constraintStart_toStartOf="@id/edit_money"
+            app:layout_constraintEnd_toEndOf="@id/edit_money"/>
+
+        <TextView
+            android:id="@+id/balance_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:id="@+id/keyboard_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_buy_coin"
+        android:layout_marginBottom="30dp"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:text="1"
+            style="@style/KeyboardButton"
+            android:layout_marginEnd="15dp"/>
+        <Button
+            android:text="2"
+            style="@style/KeyboardButton"/>
+        <Button
+            android:text="3"
+            style="@style/KeyboardButton"
+            android:layout_marginStart="15dp"/>
+        <Button
+            android:text="4"
+            style="@style/KeyboardButton"
+            android:layout_marginEnd="15dp"/>
+        <Button
+            android:text="5"
+            style="@style/KeyboardButton"/>
+        <Button
+            android:text="6"
+            style="@style/KeyboardButton"
+            android:layout_marginStart="15dp"/>
+        <Button
+            android:text="7"
+            style="@style/KeyboardButton"
+            android:layout_marginEnd="15dp"/>
+        <Button
+            android:text="8"
+            style="@style/KeyboardButton"/>
+        <Button
+            android:text="9"
+            style="@style/KeyboardButton"
+            android:layout_marginStart="15dp"/>
+        <Button
+            android:text="."
+            style="@style/KeyboardButton"
+            android:layout_marginEnd="15dp"/>
+        <Button
+            android:text="0"
+            style="@style/KeyboardButton"/>
+        <Button
+            android:text="DEL"
+            style="@style/KeyboardButton"
+            android:layout_marginStart="15dp"/>
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/button_buy_coin"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/buy_crypto_text"
+        android:background="@drawable/rounded_button"/>
+
+</RelativeLayout>

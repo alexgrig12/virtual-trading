@@ -10,13 +10,17 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Virtual Trading"
 include ':app'
 include ':feature:auth'
-include ':navigation'
+include ':base'
 include ':feature:coins'
 include ':feature:dashboard'
 include ':data:coinranking'
-include ':domain:coinranking_domain'
+include ':domain:coinranking'
+include ':data:firestore'
+include ':feature:coinactions'
+include ':domain:firestore'
