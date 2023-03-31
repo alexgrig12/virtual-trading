@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="128dp"
+    android:layout_gravity="center_horizontal"
+    android:backgroundTint="#08458E"
+    app:cardCornerRadius="8dp"
+    app:rippleColor="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/coin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/md_theme_dark_onSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Bitcoin" />
+
+        <TextView
+            android:id="@+id/coin_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/coin_name"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/coin_name"
+            android:textColor="@color/md_theme_dark_onSurface"
+            android:textSize="14sp"
+            tools:text="BTC" />
+
+        <TextView
+            android:id="@+id/coin_price_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coin_current_price"
+            android:layout_alignBaseline="@id/is_choosed"
+            android:layout_marginTop="4dp"
+            android:text="@string/coin_percent_change"
+            android:textColor="@color/md_theme_dark_onSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="1.48%" />
+
+        <TextView
+            android:id="@+id/coin_current_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coin_name"
+            android:layout_marginTop="4dp"
+            android:text="@string/coin_price"
+            android:textAlignment="textEnd"
+            android:textColor="@color/md_theme_dark_onSurface"
+            android:textSize="14sp"
+            tools:text="$100.00" />
+
+        <CheckBox
+            android:id="@+id/is_choosed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/add_to_favorite_checkbox_selector"
+            android:button="@android:color/transparent"
+            android:clickable="false"
+            android:scaleX="0.5"
+            android:scaleY="0.5" />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,4 +1,4 @@
-package virtualtrading.coins.internal
+package virtualtrading.coins.internal.di
 
 import android.app.Application
 import android.content.Context
@@ -7,6 +7,8 @@ import dagger.Module
 import virtualtrading.coins.api.CoinsDeps
 import virtualtrading.coins.api.CoinsDepsProvider
 import virtualtrading.coins.api.CoinsFragment
+import virtualtrading.coins.internal.CoinsListFragment
+import virtualtrading.coins.internal.FavoritesFragment
 import javax.inject.Scope
 
 @Scope
@@ -18,6 +20,9 @@ annotation class CoinsScope
 )]
 internal interface CoinsComponent {
     fun inject(fragment: CoinsFragment)
+    fun inject(fragment: CoinsListFragment)
+
+    fun inject(fragment: FavoritesFragment)
 
     @Component.Builder
     interface Builder {

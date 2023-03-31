@@ -9,7 +9,7 @@ import virtualtrading.coins.api.CoinsDepsProvider
 
 class VirtualTradingApp : Application(), CoinsDepsProvider {
     val appComponent: AppComponent by lazy {
-        DaggerAppComponent.builder().coinRankingApiKey("some-api-key").build()
+        DaggerAppComponent.builder().build()
     }
 
     override fun onCreate() {

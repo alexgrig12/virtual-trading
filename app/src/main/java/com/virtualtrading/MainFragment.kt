@@ -10,6 +10,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.virtualtrading.databinding.FragmentMainBinding
 
@@ -36,6 +37,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val navView = binding.mainNavView
         val navHostFragment = childFragmentManager.findFragmentById(R.id.fragment_main_container) as NavHostFragment
         val navController = navHostFragment.navController
+        navView.setupWithNavController(navController)
 
         navView.setOnItemSelectedListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
