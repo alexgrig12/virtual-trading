@@ -1,13 +1,11 @@
-package virtualtrading.auth.api
+package virtualtrading.auth
 
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -19,10 +17,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import virtualtrading.auth.R
 import virtualtrading.auth.databinding.FragmentGoogleAuthBinding
 
-class GoogleAuthFragment : Fragment() {
+class GoogleAuthFragment : Fragment(R.layout.fragment_google_auth) {
 
     private val REQ_ONE_TAP: Int = 2
     private var _binding: FragmentGoogleAuthBinding? = null
@@ -40,17 +37,9 @@ class GoogleAuthFragment : Fragment() {
         updateUI(currentUser)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentGoogleAuthBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentGoogleAuthBinding.bind(view)
 
         oneTapClient = Identity.getSignInClient(requireActivity())
         signInRequest = BeginSignInRequest.builder()

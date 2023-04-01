@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="KeyboardButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>

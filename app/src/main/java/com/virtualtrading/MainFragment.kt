@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.virtualtrading.databinding.FragmentMainBinding
@@ -19,10 +22,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainBinding.bind(view)
-        val bottomSheetBehavior: BottomSheetBehavior<LinearLayout> = setupBottomSheet()
+
+        bottomSheetBehavior = setupBottomSheet()
         setupBottomNavigation(bottomSheetBehavior)
         setupActions()
     }
@@ -58,17 +64,25 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun setupActions() {
         binding.bottomSheet.apply {
             actionBuyCoin.setOnClickListener {
-                Log.d("MainActivity", "Actions: Buy button clicked ")
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("feature:coinactions://virtualtrading.coinactions/buyCoinFragment".toUri())
+                    .build()
+                findNavController().navigate(request)
             }
             actionSellCoin.setOnClickListener {
-                Log.d("MainActivity", "Actions: Sell button clicked ")
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("feature:coinactions://virtualtrading.coinactions/sellCoinFragment".toUri())
+                    .build()
+                findNavController().navigate(request)
             }
-
             actionConvertCoin.setOnClickListener {
-                Log.d("MainActivity", "Actions: Convert button clicked ")
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("feature:coinactions://virtualtrading.coinactions/convertCoinFragment".toUri())
+                    .build()
+                findNavController().navigate(request)
             }
-
             actionEarnCoin.setOnClickListener {
+                handleActionsBottomSheet(bottomSheetBehavior)
                 Log.d("MainActivity", "Actions: Earn button clicked ")
             }
         }
@@ -90,6 +104,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 getItem(1).icon = AppCompatResources.getDrawable(requireContext(), R.drawable.main_actions)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     }
 
     override fun onDestroyView() {

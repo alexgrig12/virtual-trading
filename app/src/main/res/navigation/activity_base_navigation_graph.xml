@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/googleAuthFragment"
-        android:name="virtualtrading.auth.api.GoogleAuthFragment"
+        android:name="virtualtrading.auth.GoogleAuthFragment"
         android:label="fragment_google_auth"
         tools:layout="@layout/fragment_google_auth">
         <action
@@ -44,4 +44,32 @@
             android:id="@+id/action_searchCoinFragment_to_coinDetailsFragment"
             app:destination="@id/coinDetailsFragment" />
     </fragment>
+
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/buyCoinFragment">
+        <fragment
+            android:id="@+id/convertCoinFragment"
+            android:name="virtualtrading.coinactions.api.ConvertCoinFragment"
+            android:label="ConvertCoinFragment"
+            tools:layout="@layout/fragment_convert_coin">
+            <deepLink
+                app:uri="feature:coinactions://virtualtrading.coinactions/convertCoinFragment"/>
+        </fragment>
+        <fragment
+            android:id="@+id/sellCoinFragment"
+            android:name="virtualtrading.coinactions.api.SellCoinFragment"
+            android:label="SellCoinFragment"
+            tools:layout="@layout/fragment_sell_coin">
+            <deepLink
+                app:uri="feature:coinactions://virtualtrading.coinactions/sellCoinFragment"/>
+        </fragment>
+        <fragment
+            android:id="@+id/buyCoinFragment"
+            android:name="virtualtrading.coinactions.api.BuyCoinFragment"
+            android:label="BuyCoinFragment"
+            tools:layout="@layout/fragment_buy_coin">
+            <deepLink
+                app:uri="feature:coinactions://virtualtrading.coinactions/buyCoinFragment"/>
+        </fragment>
+    </navigation>
 </navigation>

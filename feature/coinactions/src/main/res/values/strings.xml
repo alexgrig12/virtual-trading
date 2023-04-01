@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="buy_crypto_text">Buy Crypto</string>
+    <string name="hint_edit_money">O USD</string>
+</resources>

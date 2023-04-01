@@ -55,5 +55,12 @@ dependencies {
     //noinspection GradleDependency
     api 'androidx.navigation:navigation-fragment-ktx:2.5.3'
 
+    //Coroutines and LifeCycle Libraries
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
     implementation project(":domain:coinranking")
 }
