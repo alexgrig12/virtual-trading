@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/domain/coinranking" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/auth" />
+            <option value="$PROJECT_DIR$/feature/coindetails" />
             <option value="$PROJECT_DIR$/feature/coins" />
             <option value="$PROJECT_DIR$/feature/dashboard" />
           </set>
