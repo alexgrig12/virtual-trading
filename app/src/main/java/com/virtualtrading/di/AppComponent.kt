@@ -3,6 +3,7 @@ package com.virtualtrading.di
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import virtualtrading.coindetails.api.CoinDetailsDeps
 import virtualtrading.coinranking.CoinrankingRepository
 import virtualtrading.coinranking.CoinrankingService
 import virtualtrading.coins.api.CoinsDeps
@@ -11,7 +12,7 @@ import javax.inject.Scope
 
 
 @[AppScope Component(modules = [AppModule::class])]
-interface AppComponent : CoinsDeps {
+interface AppComponent : CoinsDeps, CoinDetailsDeps {
     override val coinrankingRepository: CoinrankingRepository
 
     @Component.Builder
