@@ -9,7 +9,7 @@
         android:id="@+id/googleAuthFragment"
         android:name="virtualtrading.auth.api.GoogleAuthFragment"
         android:label="fragment_google_auth"
-        tools:layout="@layout/fragment_google_auth" >
+        tools:layout="@layout/fragment_google_auth">
         <action
             android:id="@+id/action_googleAuthFragment_to_mainContentFragment"
             app:destination="@id/mainContentFragment" />
@@ -22,5 +22,14 @@
         <action
             android:id="@+id/action_mainContentFragment_to_googleAuthFragment"
             app:destination="@id/googleAuthFragment" />
+        <action
+            android:id="@+id/action_mainContentFragment_to_coinDetailsFragment"
+            app:destination="@id/coinDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/coinDetailsFragment"
+        android:name="virtualtrading.coindetails.api.CoinDetailsFragment"
+        android:label="CoinDetailsFragment"
+        tools:layout="@layout/fragment_coin_details">
     </fragment>
 </navigation>

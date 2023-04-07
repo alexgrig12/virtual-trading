@@ -59,10 +59,10 @@ internal class ChooseFavoriteAdapter(
             binding.isChoosed.isChecked = item.isChoosed
             binding.coinPriceChange.setTextColor(
                 if (item.isDecreased) {
-                    binding.root.context.getColor(virtualtrading.navigation.R.color.red)
+                    binding.root.context.getColor(virtualtrading.base.R.color.red)
                 } else {
                     binding.root.context.getColor(
-                        virtualtrading.navigation.R.color.green
+                        virtualtrading.base.R.color.green
                     )
                 }
             )

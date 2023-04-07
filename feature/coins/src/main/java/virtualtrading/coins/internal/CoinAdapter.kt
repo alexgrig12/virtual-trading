@@ -12,12 +12,16 @@ import virtualtrading.coinranking.CoinsImageFormat
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.CoinListItemBinding
 
-internal class CoinAdapter() : ListAdapter<Coin, CoinViewHolder>(CoinItemCallback) {
+internal class CoinAdapter(
+    private val onCoinClicked: (coinId: String) -> Unit,
+) : ListAdapter<Coin, CoinViewHolder>(CoinItemCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return CoinViewHolder(
             CoinListItemBinding.inflate(layoutInflater, parent, false)
-        )
+        ) { position ->
+            onCoinClicked(getItem(position).uuid)
+        }
     }
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
@@ -26,7 +30,13 @@ internal class CoinAdapter() : ListAdapter<Coin, CoinViewHolder>(CoinItemCallbac
 
 }
 
-internal class CoinViewHolder(private val binding: CoinListItemBinding) : ViewHolder(binding.root) {
+internal class CoinViewHolder(private val binding: CoinListItemBinding, onCoinClicked: (position: Int) -> Unit) : ViewHolder(binding.root) {
+    init {
+        itemView.setOnClickListener {
+            onCoinClicked(this@CoinViewHolder.adapterPosition)
+        }
+    }
+
     fun bind(item: Coin) {
         binding.coinName.text = item.name
         binding.coinSymbol.text = item.symbol
@@ -42,10 +52,10 @@ internal class CoinViewHolder(private val binding: CoinListItemBinding) : ViewHo
         }
         binding.coinPriceChange.setTextColor(
             if (item.isDecreased) {
-                binding.root.context.getColor(virtualtrading.navigation.R.color.red)
+                binding.root.context.getColor(virtualtrading.base.R.color.red)
             } else {
                 binding.root.context.getColor(
-                    virtualtrading.navigation.R.color.green
+                    virtualtrading.base.R.color.green
                 )
             }
         )

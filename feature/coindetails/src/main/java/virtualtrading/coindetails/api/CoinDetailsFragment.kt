@@ -2,6 +2,7 @@ package virtualtrading.coindetails.api
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -28,6 +29,7 @@ class CoinDetailsFragment() : Fragment(R.layout.fragment_coin_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCoinDetailsBinding.bind(view)
+        Log.d("TAG", "onViewCreated:${arguments?.getString("coinId")} ")
     }
 
 

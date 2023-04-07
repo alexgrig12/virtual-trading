@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import dagger.Lazy
+import virtualtrading.base.findNavControllerById
 import virtualtrading.coinranking.Coin
 import virtualtrading.coinranking.CoinsOrderBy
 import virtualtrading.coins.R
@@ -34,7 +35,12 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCoinsListBinding.bind(view)
-        this.adapter = CoinAdapter()
+        this.adapter = CoinAdapter() { coinId: String ->
+            this.findNavControllerById(virtualtrading.base.R.id.activity_base_fragment_container)
+                .navigate(virtualtrading.base.R.id.action_mainContentFragment_to_coinDetailsFragment, Bundle().apply {
+                    putString("coinId", coinId)
+                })
+        }
         binding.coinList.apply {
             adapter = this@CoinsListFragment.adapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
