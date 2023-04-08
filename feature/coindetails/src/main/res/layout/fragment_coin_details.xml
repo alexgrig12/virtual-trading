@@ -1,5 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-</androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        app:elevation="0dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/md_theme_dark_background"
+            app:menu="@menu/details_actions"
+            app:navigationIcon="@drawable/navigate_back"
+            app:navigationIconTint="@color/md_theme_dark_onSurface" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/tv_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textAllCaps="true"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="BTC" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_symbol"
+                tools:text="Bitcoin" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/dollar_amount"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:text="33.95%" />
+
+
+            <TextView
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Rank"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_price"
+                tools:viewBindingIgnore="true" />
+
+
+            <TextView
+                android:id="@+id/tv_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_price"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/market_cap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Market_cap"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rank"
+                tools:viewBindingIgnore="true" />
+
+
+            <TextView
+                android:id="@+id/tv_market_cap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/dollar_amount"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_rank"
+                tools:text="$123,345,678,900" />
+
+            <TextView
+                android:id="@+id/total_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Total supply"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/market_cap"
+                tools:viewBindingIgnore="true" />
+
+
+            <TextView
+                android:id="@+id/tv_total_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_market_cap"
+                tools:text="123,345,678,900" />
+
+            <TextView
+                android:id="@+id/max_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Max supply"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_supply"
+                tools:viewBindingIgnore="true" />
+
+
+            <TextView
+                android:id="@+id/tv_max_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_supply"
+                tools:text="123,345,678,900" />
+
+            <TextView
+                android:id="@+id/circulating_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Circulating supply"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/max_supply"
+                tools:viewBindingIgnore="true" />
+
+            <TextView
+                android:id="@+id/tv_circulating_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_max_supply"
+                tools:text="123,345,678,900" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Description"
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/circulating_supply"
+                tools:viewBindingIgnore="true" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textColor="@color/md_theme_dark_onSurface"
+                android:textColorHint="@color/md_theme_dark_onSurface"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                tools:text="Bitcoin is the first decentralized digital currency." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
