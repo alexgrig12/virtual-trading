@@ -2,7 +2,9 @@ package virtualtrading.coins.internal
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -35,11 +37,14 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCoinsListBinding.bind(view)
+
         this.adapter = CoinAdapter() { coinId: String ->
+            Log.d(TAG, "onViewCreated: $coinId")
             this.findNavControllerById(virtualtrading.base.R.id.activity_base_fragment_container)
-                .navigate(virtualtrading.base.R.id.action_mainContentFragment_to_coinDetailsFragment, Bundle().apply {
-                    putString("coinId", coinId)
-                })
+                .navigate(
+                    virtualtrading.base.R.id.action_mainContentFragment_to_coinDetailsFragment,
+                    bundleOf("coinId" to coinId)
+                )
         }
         binding.coinList.apply {
             adapter = this@CoinsListFragment.adapter
@@ -83,5 +88,9 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
         super.onDestroyView()
         _binding = null
         adapter = null
+    }
+
+    companion object {
+        private const val TAG = " CoinsListFragment"
     }
 }

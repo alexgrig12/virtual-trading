@@ -5,16 +5,20 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GetCoinDto(
+data class GetCoinDTO(
     @SerialName("data")
     val `data`: Data,
     @SerialName("status")
-    val status: String
+    val status: String,
 ) {
+    companion object {
+        const val NO_INFO = "No info"
+    }
+
     @Serializable
     data class Data(
         @SerialName("coin")
-        val coin: Coin
+        val coin: Coin,
     ) {
         @Serializable
         data class Coin(
@@ -47,7 +51,7 @@ data class GetCoinDto(
             @SerialName("name")
             val name: String,
             @SerialName("notices")
-            val notices: List<Notice>,
+            val notices: Notices?,
             @SerialName("numberOfExchanges")
             val numberOfExchanges: Int,
             @SerialName("numberOfMarkets")
@@ -69,14 +73,14 @@ data class GetCoinDto(
             @SerialName("uuid")
             val uuid: String,
             @SerialName("websiteUrl")
-            val websiteUrl: String
+            val websiteUrl: String,
         ) {
             @Serializable
             data class AllTimeHigh(
                 @SerialName("price")
                 val price: String,
                 @SerialName("timestamp")
-                val timestamp: Int
+                val timestamp: Int,
             )
 
             @Serializable
@@ -86,7 +90,12 @@ data class GetCoinDto(
                 @SerialName("type")
                 val type: String,
                 @SerialName("url")
-                val url: String
+                val url: String,
+            )
+
+            @Serializable
+            data class Notices(
+                val notices: List<Notice>,
             )
 
             @Serializable
@@ -94,22 +103,39 @@ data class GetCoinDto(
                 @SerialName("type")
                 val type: String,
                 @SerialName("value")
-                val value: String
+                val value: String,
             )
 
             @Serializable
             data class Supply(
                 @SerialName("circulating")
-                val circulating: String,
+                val circulating: String?,
                 @SerialName("confirmed")
                 val confirmed: Boolean,
                 @SerialName("max")
-                val max: String,
+                val max: String?,
                 @SerialName("supplyAt")
                 val supplyAt: Int,
                 @SerialName("total")
-                val total: String
+                val total: String?,
             )
         }
     }
+
+
 }
+
+fun GetCoinDTO.toCoinDetails(): CoinDetails = CoinDetails(
+    this.data.coin.uuid,
+    this.data.coin.symbol,
+    this.data.coin.name,
+    this.data.coin.price.substring(0, 8),
+    this.data.coin.change,
+    this.data.coin.rank,
+    this.data.coin.marketCap,
+    this.data.coin.supply.total ?: GetCoinDTO.NO_INFO,
+    this.data.coin.supply.max ?: GetCoinDTO.NO_INFO,
+    this.data.coin.supply.circulating ?: GetCoinDTO.NO_INFO,
+    this.data.coin.description,
+    isDecreased = this.data.coin.change.startsWith("-")
+)

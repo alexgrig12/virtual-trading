@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CoinrankingService {
@@ -19,8 +20,8 @@ interface CoinrankingService {
         @Query("uuids") ids: List<String>? = null,
     ): GetCoinsDTO
 
-    @GET("/coin")
-    suspend fun getCoinById(@Query("uuid") id: String): GetCoinDto
+    @GET("/coin/{uuid}")
+    suspend fun getCoinById(@Path("uuid") id: String): GetCoinDTO
 
 }
 
