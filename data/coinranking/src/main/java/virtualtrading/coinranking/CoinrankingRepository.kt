@@ -8,5 +8,7 @@ class CoinrankingRepository constructor(private val coinrankingService: Coinrank
     suspend fun getFavoriteRecomendations(): List<RecommendedCoin> = coinrankingService.getCoins(amount = 6).toRecommended()
 
     // Return type need to be change by mapping
-    suspend fun getCoinById(id: String): GetCoinDto = coinrankingService.getCoinById(id)
+    suspend fun getCoinById(id: String): GetCoinDTO = coinrankingService.getCoinById(id)
+
+    suspend fun getCoinDetailsById(id: String): CoinDetails = coinrankingService.getCoinById(id).toCoinDetails()
 }

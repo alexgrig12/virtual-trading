@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dollar_amount">$%s</string>
+    <string name="coin_percent_change">%s%%</string>
+</resources>

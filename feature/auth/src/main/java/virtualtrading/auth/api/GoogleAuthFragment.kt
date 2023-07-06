@@ -135,7 +135,7 @@ class GoogleAuthFragment : Fragment() {
     private fun updateUI(firebaseUser: FirebaseUser?) {
         if (firebaseUser != null) {
             findNavController().navigate(
-                virtualtrading.navigation.R.id.action_googleAuthFragment_to_mainContentFragment,
+                virtualtrading.base.R.id.action_googleAuthFragment_to_mainContentFragment,
                 null,
                 navOptions {
                     anim {
@@ -143,7 +143,7 @@ class GoogleAuthFragment : Fragment() {
                         exit = android.R.animator.fade_out
                     }
 
-                    popUpTo(virtualtrading.navigation.R.id.googleAuthFragment) {
+                    popUpTo(virtualtrading.base.R.id.googleAuthFragment) {
                         inclusive = true
                     }
 

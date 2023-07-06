@@ -38,7 +38,7 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
         setupTabsWithViewPager()
 
         binding.balanceBtn.setOnClickListener {
-            findNavController().navigate(virtualtrading.navigation.R.id.action_navigation_coins_fragment_to_navigation_dashboard_fragment)
+            findNavController().navigate(virtualtrading.base.R.id.action_navigation_coins_fragment_to_navigation_dashboard_fragment)
         }
     }
 
