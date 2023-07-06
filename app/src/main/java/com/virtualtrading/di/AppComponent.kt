@@ -7,12 +7,13 @@ import virtualtrading.coindetails.api.CoinDetailsDeps
 import virtualtrading.coinranking.CoinrankingRepository
 import virtualtrading.coinranking.CoinrankingService
 import virtualtrading.coins.api.CoinsDeps
+import virtualtrading.searchcoin.api.SearchCoinDeps
 import javax.inject.Qualifier
 import javax.inject.Scope
 
 
 @[AppScope Component(modules = [AppModule::class])]
-interface AppComponent : CoinsDeps, CoinDetailsDeps {
+interface AppComponent : CoinsDeps, CoinDetailsDeps, SearchCoinDeps {
     override val coinrankingRepository: CoinrankingRepository
 
     @Component.Builder

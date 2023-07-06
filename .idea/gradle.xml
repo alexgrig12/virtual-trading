@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/feature/coindetails" />
             <option value="$PROJECT_DIR$/feature/coins" />
             <option value="$PROJECT_DIR$/feature/dashboard" />
+            <option value="$PROJECT_DIR$/feature/searchcoin" />
           </set>
         </option>
       </GradleProjectSettings>

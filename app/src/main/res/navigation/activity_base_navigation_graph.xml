@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_mainContentFragment_to_coinDetailsFragment"
             app:destination="@id/coinDetailsFragment" />
+        <action
+            android:id="@+id/action_mainContentFragment_to_searchCoinFragment"
+            app:destination="@id/searchCoinFragment" />
     </fragment>
     <fragment
         android:id="@+id/coinDetailsFragment"
@@ -32,4 +35,9 @@
         android:label="CoinDetailsFragment"
         tools:layout="@layout/fragment_coin_details">
     </fragment>
+    <fragment
+        android:id="@+id/searchCoinFragment"
+        android:name="virtualtrading.searchcoin.api.SearchCoinFragment"
+        android:label="SearchCoinFragment"
+        tools:layout="@layout/fragment_search_coin"/>
 </navigation>
