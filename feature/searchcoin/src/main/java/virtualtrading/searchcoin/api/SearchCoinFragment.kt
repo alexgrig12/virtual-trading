@@ -2,8 +2,10 @@ package virtualtrading.searchcoin.api
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -43,14 +45,35 @@ class SearchCoinFragment : Fragment(R.layout.fragment_search_coin) {
                 }
             }
             requestFocus()
+
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    Log.d(TAG, "onQueryTextChange: $newText")
+                    searchCoinViewModel.query = newText
+                    return true
+                }
+            })
         }
         binding.cancelSearch.setOnClickListener {
             requireActivity().navigateBack()
+        }
+
+        searchCoinViewModel.searchResult.observe(viewLifecycleOwner) { searchResult ->
+            Log.d(TAG, "onViewCreated:searchResult $searchResult ")
+            binding.textQuery.text = searchResult
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "SearchCoinFragment"
     }
 }

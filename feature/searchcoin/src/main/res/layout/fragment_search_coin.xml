@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -23,8 +24,7 @@
         app:searchHintIcon="@drawable/search_icon"
         app:searchIcon="@drawable/search_icon"
         app:submitBackground="@android:color/transparent"
-        app:theme="@style/VirtualTrading.SearchView"
-        />
+        app:theme="@style/VirtualTrading.SearchView" />
 
     <TextView
         android:id="@+id/cancel_search"
@@ -38,4 +38,23 @@
         android:text="Cancel"
         android:textColor="@color/md_theme_dark_onSurface"
         android:textSize="12sp" />
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/search"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        tools:listitem="@layout/coin_list_item" />-->
+
+    <TextView
+        android:id="@+id/text_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search"
+        android:layout_marginTop="128dp"
+        tools:text = "abc"
+        android:textColor="@color/md_theme_dark_onSurface"
+        android:textSize="32sp"
+        />
 </RelativeLayout>
