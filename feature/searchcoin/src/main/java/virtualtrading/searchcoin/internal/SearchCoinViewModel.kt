@@ -1,4 +1,4 @@
-package virtualtrading.searchcoin.internal.di
+package virtualtrading.searchcoin.internal
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 internal class SearchCoinViewModel(private val coinrankingRepository: CoinrankingRepository) : ViewModel() {
 
-    val baseText = "SearchCoinFragment"
 
 
     @Suppress("UNCHECKED_CAST")

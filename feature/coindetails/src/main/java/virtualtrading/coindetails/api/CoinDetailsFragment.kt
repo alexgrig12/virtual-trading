@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import virtualtrading.base.navigateBack
 import virtualtrading.coindetails.R
 import virtualtrading.coindetails.databinding.FragmentCoinDetailsBinding
 import virtualtrading.coindetails.internal.CoinDetailsViewModel
@@ -58,7 +59,7 @@ class CoinDetailsFragment() : Fragment(R.layout.fragment_coin_details) {
     }
 
     private fun navigateBack() {
-        requireActivity().onBackPressedDispatcher.onBackPressed()
+        requireActivity().navigateBack()
     }
 
 
