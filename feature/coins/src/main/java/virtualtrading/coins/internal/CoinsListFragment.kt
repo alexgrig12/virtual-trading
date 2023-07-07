@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import dagger.Lazy
 import virtualtrading.base.findNavControllerById
+import virtualtrading.base.ui.CoinAdapter
 import virtualtrading.coinranking.Coin
 import virtualtrading.coinranking.CoinsOrderBy
 import virtualtrading.coins.R

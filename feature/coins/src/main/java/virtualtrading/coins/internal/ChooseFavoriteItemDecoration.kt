@@ -13,8 +13,6 @@ class ChooseFavoriteItemDecoration(
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        val adapter = parent.adapter ?: return
-
         val currentPosition = parent.getChildAdapterPosition(view).takeIf { it != RecyclerView.NO_POSITION } ?: return
         val spanCount = getTotalSpanCount(parent)
 
