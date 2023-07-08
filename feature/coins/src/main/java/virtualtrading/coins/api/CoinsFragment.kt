@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.Lazy
-import virtualtrading.base.findNavControllerById
+import virtualtrading.base.extensions.findNavControllerById
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.FragmentCoinsBinding
 import virtualtrading.coins.internal.CoinsListFragment

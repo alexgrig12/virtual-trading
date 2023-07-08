@@ -1,4 +1,4 @@
-package virtualtrading.base
+package virtualtrading.base.extensions
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment

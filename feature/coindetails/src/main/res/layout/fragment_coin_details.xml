@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/dollar_amount"
+                android:text=""
                 android:textColor="@color/md_theme_dark_onSurface"
                 android:textColorHint="@color/md_theme_dark_onSurface"
                 android:textSize="24sp"
@@ -112,13 +112,12 @@
                 app:layout_constraintTop_toBottomOf="@id/rank"
                 tools:viewBindingIgnore="true" />
 
-
             <TextView
                 android:id="@+id/tv_market_cap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/dollar_amount"
+                android:text=""
                 android:textColor="@color/md_theme_dark_onSurface"
                 android:textColorHint="@color/md_theme_dark_onSurface"
                 android:textSize="14sp"
@@ -138,7 +137,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/market_cap"
                 tools:viewBindingIgnore="true" />
-
 
             <TextView
                 android:id="@+id/tv_total_supply"
@@ -165,7 +163,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/total_supply"
                 tools:viewBindingIgnore="true" />
-
 
             <TextView
                 android:id="@+id/tv_max_supply"
@@ -231,7 +228,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description"
                 tools:text="Bitcoin is the first decentralized digital currency." />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

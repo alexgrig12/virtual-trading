@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import virtualtrading.base.navigateBack
+import virtualtrading.base.extensions.navigateBack
 import virtualtrading.coindetails.R
 import virtualtrading.coindetails.databinding.FragmentCoinDetailsBinding
 import virtualtrading.coindetails.internal.CoinDetailsViewModel
@@ -49,9 +49,6 @@ class CoinDetailsFragment() : Fragment(R.layout.fragment_coin_details) {
             binding.tvCirculatingSupply.text = coin.circulatingSupply
             binding.tvDescription.text = coin.description
         }
-
-
-
 
         binding.appbar.setNavigationOnClickListener {
             navigateBack()

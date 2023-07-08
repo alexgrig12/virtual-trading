@@ -11,6 +11,11 @@ data class GetCoinsDTO(
     @SerialName("status")
     val status: String,
 ) {
+
+    companion object {
+        const val NO_INFO = "No info"
+    }
+
     @Serializable
     data class DataDTO(
         @SerialName("coins")
@@ -21,25 +26,25 @@ data class GetCoinsDTO(
         @Serializable
         data class CoinDTO(
             @SerialName("btcPrice")
-            val btcPrice: String?,
+            val btcPrice: String = NO_INFO,
             @SerialName("change")
-            val change: String,
+            val change: String = NO_INFO,
             @SerialName("coinrankingUrl")
-            val coinrankingUrl: String?,
+            val coinrankingUrl: String = NO_INFO,
             @SerialName("color")
-            val color: String?,
+            val color: String = NO_INFO,
             @SerialName("24hVolume")
-            val hVolume: String?,
+            val hVolume: String = NO_INFO,
             @SerialName("iconUrl")
             val iconUrl: String,
             @SerialName("listedAt")
             val listedAt: Int?,
             @SerialName("marketCap")
-            val marketCap: String,
+            val marketCap: String = NO_INFO,
             @SerialName("name")
             val name: String,
             @SerialName("price")
-            val price: String,
+            val price: String?,
             @SerialName("rank")
             val rank: Int?,
             @SerialName("sparkline")
@@ -78,7 +83,7 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
     change = this.change,
     iconUrl = this.iconUrl,
     name = this.name,
-    price = this.price.substring(0, 8),
+    price = checkPrice(this.price),
     symbol = this.symbol,
     urlFormat = this.iconUrl.let { str ->
         str.lastIndexOf('.', str.length, false).let { index ->
@@ -90,6 +95,7 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toCoin(): Coin = Coin(
     isDecreased = this.change.startsWith("-")
 )
 
+private fun checkPrice(price: String?) = if (price == null) GetCoinsDTO.NO_INFO else if (price.length <= 7) price else price.substring(0, 8)
 
 fun GetCoinsDTO.toRecommended(): List<RecommendedCoin> {
     return this.data.coins.map { it.toRecommendedCoin() }
@@ -99,7 +105,7 @@ fun GetCoinsDTO.DataDTO.CoinDTO.toRecommendedCoin(): RecommendedCoin = Recommend
     uuid = this.uuid,
     change = this.change,
     name = this.name,
-    price = this.price.substring(0, 8),
+    price = checkPrice(this.price),
     symbol = this.symbol,
     isDecreased = this.change.startsWith("-"),
     isChoosed = false

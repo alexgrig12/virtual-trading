@@ -1,12 +1,10 @@
 package virtualtrading.searchcoin.internal
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import android.util.Log
+import androidx.lifecycle.*
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import virtualtrading.coinranking.Coin
 import virtualtrading.coinranking.CoinrankingRepository
 import javax.inject.Inject
 
@@ -19,25 +17,34 @@ internal class SearchCoinViewModel(private val coinrankingRepository: Coinrankin
             _query.value = value
         }
 
-    private val _searchResult = _query
-        .debounce(500)
+    // b , bi, bit , ... , bitcoin , bitcoin , BiTcOin --> bitcoin
+
+    val searchResult: LiveData<List<Coin>> = _query
+        .debounce(500)  // b, bi, bit,..., bitcoin --> bitcoin
         .filter { currentQuery ->
-            return@filter currentQuery.isNotEmpty()
+            return@filter currentQuery.isNotEmpty() // clearing search input will not trigger request
         }
-        .distinctUntilChanged()
-        .map { currentQuery -> currentQuery.lowercase() }
-        .mapLatest { currentQuery ->
-            searchCoin(currentQuery)
+        .map { currentQuery -> currentQuery.lowercase().trim() } // BiTcOin --> bitcoin
+        .distinctUntilChanged() // bitcoin, bitcoin, bitcoin, bitcoin --> bitcoin
+        .flatMapLatest { currentQuery ->
+            searchCoin(currentQuery) // request
         }
         .asLiveData()
-    val searchResult: LiveData<String>
-        get() = _searchResult
 
 
-    private fun searchCoin(query: String): String {
-        return query
+    private suspend fun searchCoin(query: String): Flow<List<Coin>> {
+        return flow {
+            val coinIds: List<String> = coinrankingRepository.getCoinsIdsBySearch(query)
+            Log.d(TAG, "searchCoin:coinId: $coinIds ")
+            val coins = coinrankingRepository.getCoins(ids = coinIds)
+            Log.d(TAG, "searchCoin:coins: $coins")
+            emit(coins)
+        }.flowOn(Dispatchers.IO)
     }
 
+    companion object {
+        private const val TAG = "SearchCoinViewModel"
+    }
 
     @Suppress("UNCHECKED_CAST")
     class Factory @Inject constructor(

@@ -39,5 +39,9 @@
         android:id="@+id/searchCoinFragment"
         android:name="virtualtrading.searchcoin.api.SearchCoinFragment"
         android:label="SearchCoinFragment"
-        tools:layout="@layout/fragment_search_coin"/>
+        tools:layout="@layout/fragment_search_coin">
+        <action
+            android:id="@+id/action_searchCoinFragment_to_coinDetailsFragment"
+            app:destination="@id/coinDetailsFragment" />
+    </fragment>
 </navigation>
