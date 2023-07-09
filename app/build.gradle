@@ -59,6 +59,7 @@ dependencies {
     implementation project(':feature:coins')
     implementation project(':feature:dashboard')
     implementation project(':feature:coindetails')
+    implementation project(':feature:searchcoin')
     implementation project(':base')
     implementation project(':data:coinranking')
 }

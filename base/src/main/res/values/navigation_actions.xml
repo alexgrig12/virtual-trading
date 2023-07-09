@@ -4,5 +4,7 @@
     <item name="action_googleAuthFragment_to_mainContentFragment" type="id" />
     <item name="action_navigation_coins_fragment_to_navigation_dashboard_fragment" type="id" />
     <item name="activity_base_fragment_container" type="id" />
-    <item name="action_mainContentFragment_to_coinDetailsFragment" type="id"/>
+    <item name="action_mainContentFragment_to_coinDetailsFragment" type="id" />
+    <item name="action_mainContentFragment_to_searchCoinFragment" type="id" />
+    <item name="action_searchCoinFragment_to_coinDetailsFragment" type="id" />
 </resources>

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import virtualtrading.coinranking.RecommendedCoin
-import virtualtrading.coins.R
 import virtualtrading.coins.databinding.AddToFavoriteListItemBinding
 
 internal class ChooseFavoriteAdapter(
@@ -54,8 +53,8 @@ internal class ChooseFavoriteAdapter(
         fun bind(item: RecommendedCoin) {
             binding.coinName.text = item.name
             binding.coinSymbol.text = item.symbol
-            binding.coinCurrentPrice.text = binding.root.context.getString(R.string.coin_price, item.price)
-            binding.coinPriceChange.text = binding.root.context.getString(R.string.coin_percent_change, item.change)
+            binding.coinCurrentPrice.text = binding.root.context.getString(virtualtrading.base.R.string.coin_price, item.price)
+            binding.coinPriceChange.text = binding.root.context.getString(virtualtrading.base.R.string.coin_percent_change, item.change)
             binding.isChoosed.isChecked = item.isChoosed
             binding.coinPriceChange.setTextColor(
                 if (item.isDecreased) {
@@ -83,7 +82,7 @@ private object ChooseFavoriteItemCallback : DiffUtil.ItemCallback<RecommendedCoi
         return oldItem == newItem
     }
 
-    override fun getChangePayload(oldItem: RecommendedCoin, newItem: RecommendedCoin): Any? {
+    override fun getChangePayload(oldItem: RecommendedCoin, newItem: RecommendedCoin): Any {
         val payloadBundle = Bundle()
         if (oldItem.isChoosed != newItem.isChoosed) payloadBundle.putBoolean(ChooseFavoriteAdapter.IS_CHOOSED_KEY, newItem.isChoosed)
         return payloadBundle

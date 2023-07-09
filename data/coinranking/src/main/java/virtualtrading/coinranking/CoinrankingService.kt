@@ -23,6 +23,9 @@ interface CoinrankingService {
     @GET("/coin/{uuid}")
     suspend fun getCoinById(@Path("uuid") id: String): GetCoinDTO
 
+    @GET("/search-suggestions")
+    suspend fun searchCoin(@Query("query") query: String): SearchCoinDTO
+
 }
 
 @ExperimentalSerializationApi
@@ -30,6 +33,8 @@ fun CoinrankingService(): CoinrankingService {
 
     val json = Json {
         ignoreUnknownKeys = true
+        explicitNulls = false
+        coerceInputValues = true
     }
 
     val httpLoggingInterceptor = HttpLoggingInterceptor().apply {

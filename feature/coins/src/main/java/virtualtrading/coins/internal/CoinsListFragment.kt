@@ -11,7 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import dagger.Lazy
-import virtualtrading.base.findNavControllerById
+import virtualtrading.base.extensions.findNavControllerById
+import virtualtrading.base.ui.CoinAdapter
 import virtualtrading.coinranking.Coin
 import virtualtrading.coinranking.CoinsOrderBy
 import virtualtrading.coins.R
@@ -80,7 +81,6 @@ internal class CoinsListFragment : Fragment(R.layout.fragment_coins_list) {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 return
             }
-
         })
     }
 

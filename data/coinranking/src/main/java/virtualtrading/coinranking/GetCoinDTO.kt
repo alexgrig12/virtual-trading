@@ -25,62 +25,62 @@ data class GetCoinDTO(
             @SerialName("allTimeHigh")
             val allTimeHigh: AllTimeHigh,
             @SerialName("btcPrice")
-            val btcPrice: String,
+            val btcPrice: String = NO_INFO,
             @SerialName("change")
-            val change: String,
+            val change: String = NO_INFO,
             @SerialName("coinrankingUrl")
             val coinrankingUrl: String,
             @SerialName("color")
-            val color: String,
+            val color: String = NO_INFO,
             @SerialName("description")
-            val description: String,
+            val description: String = NO_INFO,
             @SerialName("fullyDilutedMarketCap")
-            val fullyDilutedMarketCap: String,
+            val fullyDilutedMarketCap: String = NO_INFO,
             @SerialName("24hVolume")
-            val hVolume: String,
+            val hVolume: String = NO_INFO,
             @SerialName("iconUrl")
             val iconUrl: String,
             @SerialName("links")
-            val links: List<Link>,
+            val links: List<Link?>?,
             @SerialName("listedAt")
-            val listedAt: Int,
+            val listedAt: Int?,
             @SerialName("lowVolume")
-            val lowVolume: Boolean,
+            val lowVolume: Boolean?,
             @SerialName("marketCap")
-            val marketCap: String,
+            val marketCap: String = NO_INFO,
             @SerialName("name")
-            val name: String,
+            val name: String = NO_INFO,
             @SerialName("notices")
-            val notices: Notices?,
+            val notices: List<Notice>?,
             @SerialName("numberOfExchanges")
-            val numberOfExchanges: Int,
+            val numberOfExchanges: Int = 0,
             @SerialName("numberOfMarkets")
-            val numberOfMarkets: Int,
+            val numberOfMarkets: Int = 0,
             @SerialName("price")
-            val price: String,
+            val price: String?,
             @SerialName("priceAt")
-            val priceAt: Int,
+            val priceAt: Int?,
             @SerialName("rank")
-            val rank: Int,
+            val rank: Int = -1,
             @SerialName("sparkline")
-            val sparkline: List<String>,
+            val sparkline: List<String?>?,
             @SerialName("supply")
             val supply: Supply,
             @SerialName("symbol")
-            val symbol: String,
+            val symbol: String = NO_INFO,
             @SerialName("tags")
             val tags: List<String>,
             @SerialName("uuid")
             val uuid: String,
             @SerialName("websiteUrl")
-            val websiteUrl: String,
+            val websiteUrl: String = NO_INFO,
         ) {
             @Serializable
             data class AllTimeHigh(
                 @SerialName("price")
-                val price: String,
+                val price: String = NO_INFO,
                 @SerialName("timestamp")
-                val timestamp: Int,
+                val timestamp: Int?,
             )
 
             @Serializable
@@ -94,11 +94,6 @@ data class GetCoinDTO(
             )
 
             @Serializable
-            data class Notices(
-                val notices: List<Notice>,
-            )
-
-            @Serializable
             data class Notice(
                 @SerialName("type")
                 val type: String,
@@ -109,33 +104,35 @@ data class GetCoinDTO(
             @Serializable
             data class Supply(
                 @SerialName("circulating")
-                val circulating: String?,
+                val circulating: String = NO_INFO,
                 @SerialName("confirmed")
-                val confirmed: Boolean,
+                val confirmed: Boolean?,
                 @SerialName("max")
-                val max: String?,
+                val max: String = NO_INFO,
                 @SerialName("supplyAt")
-                val supplyAt: Int,
+                val supplyAt: Int?,
                 @SerialName("total")
-                val total: String?,
+                val total: String = NO_INFO,
             )
         }
     }
-
-
 }
 
 fun GetCoinDTO.toCoinDetails(): CoinDetails = CoinDetails(
-    this.data.coin.uuid,
-    this.data.coin.symbol,
-    this.data.coin.name,
-    this.data.coin.price.substring(0, 8),
-    this.data.coin.change,
-    this.data.coin.rank,
-    this.data.coin.marketCap,
-    this.data.coin.supply.total ?: GetCoinDTO.NO_INFO,
-    this.data.coin.supply.max ?: GetCoinDTO.NO_INFO,
-    this.data.coin.supply.circulating ?: GetCoinDTO.NO_INFO,
-    this.data.coin.description,
-    isDecreased = this.data.coin.change.startsWith("-")
+    data.coin.uuid,
+    data.coin.symbol,
+    data.coin.name,
+    data.coin.price.let { price ->
+        if (price == null) GetCoinsDTO.NO_INFO
+        else if (price.length <= 7) price
+        else price.substring(0, 8)
+    },
+    data.coin.change,
+    data.coin.rank,
+    data.coin.marketCap,
+    data.coin.supply.total,
+    data.coin.supply.max,
+    data.coin.supply.circulating,
+    data.coin.description,
+    isDecreased = data.coin.change.startsWith("-")
 )

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.Lazy
+import virtualtrading.base.extensions.findNavControllerById
 import virtualtrading.coins.R
 import virtualtrading.coins.databinding.FragmentCoinsBinding
 import virtualtrading.coins.internal.CoinsListFragment
@@ -39,6 +40,12 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
 
         binding.balanceBtn.setOnClickListener {
             findNavController().navigate(virtualtrading.base.R.id.action_navigation_coins_fragment_to_navigation_dashboard_fragment)
+        }
+
+        binding.searchBtn.setOnClickListener {
+            findNavControllerById(virtualtrading.base.R.id.activity_base_fragment_container).navigate(
+                virtualtrading.base.R.id.action_mainContentFragment_to_searchCoinFragment
+            )
         }
     }
 

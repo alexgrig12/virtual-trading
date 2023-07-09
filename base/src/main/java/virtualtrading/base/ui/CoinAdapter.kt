@@ -1,4 +1,4 @@
-package virtualtrading.coins.internal
+package virtualtrading.base.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.decode.SvgDecoder
 import coil.load
+import virtualtrading.base.R
+import virtualtrading.base.databinding.CoinListItemBinding
 import virtualtrading.coinranking.Coin
 import virtualtrading.coinranking.CoinsImageFormat
-import virtualtrading.coins.R
-import virtualtrading.coins.databinding.CoinListItemBinding
 
-internal class CoinAdapter(
+class CoinAdapter(
     private val onCoinClicked: (coinId: String) -> Unit,
 ) : ListAdapter<Coin, CoinViewHolder>(CoinItemCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
@@ -30,7 +30,7 @@ internal class CoinAdapter(
 
 }
 
-internal class CoinViewHolder(private val binding: CoinListItemBinding, onCoinClicked: (position: Int) -> Unit) : ViewHolder(binding.root) {
+class CoinViewHolder(private val binding: CoinListItemBinding, onCoinClicked: (position: Int) -> Unit) : ViewHolder(binding.root) {
     init {
         itemView.setOnClickListener {
             onCoinClicked(this@CoinViewHolder.adapterPosition)
@@ -52,10 +52,10 @@ internal class CoinViewHolder(private val binding: CoinListItemBinding, onCoinCl
         }
         binding.coinPriceChange.setTextColor(
             if (item.isDecreased) {
-                binding.root.context.getColor(virtualtrading.base.R.color.red)
+                binding.root.context.getColor(R.color.red)
             } else {
                 binding.root.context.getColor(
-                    virtualtrading.base.R.color.green
+                    R.color.green
                 )
             }
         )

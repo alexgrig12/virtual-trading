@@ -1,8 +1,9 @@
 package virtualtrading.coinranking
 
 class CoinrankingRepository constructor(private val coinrankingService: CoinrankingService) {
+
     suspend fun getCoins(
-        orderBy: String, amount: Int = 50, ids: List<String>? = null,
+        orderBy: String = CoinsOrderBy.MARKETCAP.stringValue, amount: Int = 50, ids: List<String>? = null,
     ) = coinrankingService.getCoins(orderBy = orderBy, amount = amount, ids = ids).toCoins()
 
     suspend fun getFavoriteRecomendations(): List<RecommendedCoin> = coinrankingService.getCoins(amount = 6).toRecommended()
@@ -11,4 +12,6 @@ class CoinrankingRepository constructor(private val coinrankingService: Coinrank
     suspend fun getCoinById(id: String): GetCoinDTO = coinrankingService.getCoinById(id)
 
     suspend fun getCoinDetailsById(id: String): CoinDetails = coinrankingService.getCoinById(id).toCoinDetails()
+
+    suspend fun getCoinsIdsBySearch(query: String): List<String> = coinrankingService.searchCoin(query).toCoinIds()
 }
